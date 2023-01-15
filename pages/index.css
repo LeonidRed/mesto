@@ -1,0 +1,12 @@
+@import url(../vendor/normalize.css);
+
+@import url(../blocks/page/page.css);
+
+/* ------------- header ------------  */
+
+/* ------------- content ------------  */
+
+/* ------------- footer ------------  */
+
+/* ------------- fonts ------------  */
+@import url(../vendor/fonts/inter.css);
