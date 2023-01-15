@@ -1,0 +1,8 @@
+.element__area-like:hover {
+  opacity: 60%;
+  cursor: pointer;
+}
+
+.element__area-like:active {
+  background-image: url(../../../images/like_active.svg);
+}

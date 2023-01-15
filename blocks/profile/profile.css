@@ -1,0 +1,5 @@
+.profile {
+  display: grid;
+  grid-template-columns: 120px minmax(max-content, 1fr) 1fr 150px;
+  align-items: center;
+}

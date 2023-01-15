@@ -1,34 +1,121 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mesto-Russia</title>
-	<link rel="stylesheet" href="./pages/index.css">
-</head>
-<body>
-  <!-- ------------- page start ------------ -->
-	<div class="page">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto-Russia</title>
+    <link rel="stylesheet" href="./pages/index.css">
+  </head>
+  <body>
+    <!-- ------------- page start ------------ -->
+    <div class="page">
 
-     <!-- ------------- header start ------------ -->
-		<header class="header header_offset_vertical">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
-		</header>
-    <!-- ------------- header end ------------ -->
+      <!-- ------------- header start ------------ -->
+      <header class="header header_offset_vertical">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
+      </header>
+      <!-- ------------- header end ------------ -->
 
-    <!-- ------------- main start ------------ -->
-		<main class="content">
+      <!-- ------------- main start ------------ -->
+      <main class="content">
 
-		</main>
-    <!-- ------------- main end ------------ -->
+        <!-- ------------- profile start ------------ -->
+        <section class="profile">
+          <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар
+            автора">
+          <div class="profile__info">
+            <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+            <p class="profile__info-profession">Исследователь океана</p>
+          </div>
+          <img class="profile__button_edit" src="./images/Edit Button.svg"
+            alt="Кнопка редактирования">
+          <img class="profile__button_add" src="./images/Add Button.svg"
+            alt="Кнопка добавить">
+        </section>
+        <!-- ------------- profile end ------------ -->
 
-    <!-- ------------- footer start ------------ -->
-		<footer class="footer">
+        <!-- ------------- elements start ------------ -->
+        <section class="elements">
+          <article class="element">
+            <img class="element__picture"
+              src="./images/element__city_karachaevsk.jpg" alt="Вид на
+              Карачаевск">
+            <div class="element__area">
+              <h2 class="element__area-title">Карачаевск</h2>
+              <img class="element__area-like" src="./images/like.svg"
+                alt="Лайк">
+            </div>
+          </article>
 
-		</footer>
-    <!-- ------------- footer end ------------ -->
-	</div>
-  <!-- ------------- page end ------------ -->
-</body>
+          <article class="element">
+            <img class="element__picture"
+              src="./images/element__mountain_elbrus.jpg" alt="Вид на
+              Карачаевск">
+            <div class="element__area">
+              <h2 class="element__area-title">Гора Эльбрус</h2>
+              <!-- Обернул в ссылку -->
+              <a href="#" target="_blank"><img class="element__area-like"
+                  src="./images/like.svg"
+                  alt="Лайк"></a>
+            </div>
+          </article>
+
+          <article class="element">
+            <img class="element__picture"
+              src="./images/element__mountain_dombai.jpg" alt="Вид на
+              Карачаевск">
+            <div class="element__area">
+              <h2 class="element__area-title">Домбай</h2>
+              <img class="element__area-like" src="./images/like.svg"
+                alt="Лайк">
+            </div>
+          </article>
+
+          <article class="element">
+            <img class="element__picture"
+              src="./images/element__mountain_elbrus.jpg" alt="Вид на
+              Карачаевск">
+            <div class="element__area">
+              <h2 class="element__area-title">Гора-Эльбрус</h2>
+              <img class="element__area-like" src="./images/like.svg"
+                alt="Лайк">
+            </div>
+          </article>
+
+          <article class="element">
+            <img class="element__picture"
+              src="./images/element__mountain_dombai.jpg" alt="Вид на
+              Карачаевск">
+            <div class="element__area">
+              <h2 class="element__area-title">Домбай</h2>
+              <img class="element__area-like" src="./images/like.svg"
+                alt="Лайк">
+            </div>
+          </article>
+
+          <article class="element">
+            <img class="element__picture"
+              src="./images/element__city_karachaevsk.jpg" alt="Вид на
+              Карачаевск">
+            <div class="element__area">
+              <h2 class="element__area-title">Карачаево-Черкессия</h2>
+              <img class="element__area-like" src="./images/like.svg"
+                alt="Лайк">
+            </div>
+          </article>
+
+        </section>
+        <!-- ------------- elements end ------------ -->
+      </main>
+      <!-- ------------- main end ------------ -->
+
+      <!-- ------------- footer start ------------ -->
+      <footer class="footer footer_offset_vertical">
+        <p class="footer__copyright">© 2023 Mesto Russia</p>
+      </footer>
+      <!-- ------------- footer end ------------ -->
+    </div>
+    <!-- ------------- page end ------------ -->
+  </body>
 </html>
