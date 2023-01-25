@@ -4,16 +4,14 @@
   align-items: center;
 }
 
-/* @media screen and (max-width: 750px) {
-  .profile {
-    display: flex;
-    flex-direction: column;
-  }
-} */
-
 @media screen and (max-width: 750px) {
   .profile {
-    grid-template-columns: 1fr;
+    grid-template-columns: 235px 47px;
+    grid-template-areas:
+    "avatar avatar"
+    "info edit"
+    "add add";
+    justify-content: center;
     justify-items: center;
   }
 }
