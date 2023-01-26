@@ -1,4 +1,4 @@
-.popup__button_exit {
+.popup__button-exit {
   background-image: url("../../../../images/Close\ Icon.svg");
   background-position: center;
   background-repeat: no-repeat;
@@ -17,14 +17,14 @@
 }
 
 @media screen and (max-width: 750px) {
-  .popup__button_exit {
+  .popup__button-exit {
     width: 20px;
     height: 20px;
     justify-self: flex-end;
   }
 }
 
-.popup__button_exit:hover {
+.popup__button-exit:hover {
   cursor: pointer;
   opacity: 60%;
 }

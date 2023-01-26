@@ -9,10 +9,10 @@
     <script defer src="./vendor/script.js"></script>
   </head>
   <body>
-    <!-- ------------- page start ------------ -->
+    <!-- ------------ page start ------------ -->
     <div class="page">
 
-      <!-- ------------- header start ------------ -->
+      <!-- ------------ header start ------------ -->
       <header class="header header_offset_vertical">
         <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
       </header>
@@ -29,15 +29,15 @@
             <h1 class="profile__info-name">Жак-Ив Кусто</h1>
             <p class="profile__info-profession">Исследователь океана</p>
           </div>
-          <button class="profile__button_edit" type="button">
+          <button class="profile__button-edit" type="button">
           </button>
-          <button class="profile__button_add" type="button">
+          <button class="profile__button-add" type="button">
           </button>
         </section>
         <!-- ------------- profile end ------------ -->
 
         <!-- ------------- elements start ------------ -->
-        <section class="elements">
+        <section class="elements" aria-label="Фото природы России">
           <article class="element">
             <img class="element__picture"
               src="./images/element__city_karachaevsk.jpg" alt="Вид на
@@ -111,14 +111,14 @@
 
       <!-- ------------- popup start ------------ -->
       <article class="popup">
-        <div class="popup__container">
+        <form class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
           <input class="popup__input-name" type="text" placeholder="введите имя"
             autofocus>
           <input class="popup__input-prof" type="text" placeholder="введите профессию">
-          <button class="popup__button_save" type="submit">Сохранить</button>
-        </div>
-        <button class="popup__button_exit" type="button"></button>
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__button-exit" type="button"></button>
       </article>
       <!-- ------------- popup end ------------ -->
 

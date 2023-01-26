@@ -1,7 +1,7 @@
-const editBtn = document.querySelector('.profile__button_edit')
-const addBtn = document.querySelector('.profile__button_add')
-const saveBtn = document.querySelector('.popup__button_save')
-const exitBtn = document.querySelector('.popup__button_exit')
+const editBtn = document.querySelector('.profile__button-edit')
+const addBtn = document.querySelector('.profile__button-add')
+const saveBtn = document.querySelector('.popup__button-save')
+const exitBtn = document.querySelector('.popup__button-exit')
 
 const popup = document.querySelector('.popup')
 const popupInputName = document.querySelector('.popup__input-name')
@@ -38,4 +38,4 @@ function saveInputPopup(event) {
   closePopup()
 }
 
-saveBtn.addEventListener('click', saveInputPopup)
+popup.addEventListener('submit', saveInputPopup)
