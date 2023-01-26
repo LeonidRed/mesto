@@ -1,5 +1,5 @@
 .profile__button-add {
-  background-image: url("../../../../images/Add\ Button.svg");
+  background-image: url("../../../images/AddButton.svg");
   min-height: 50px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -12,7 +12,7 @@
 
 @media screen and (max-width: 750px) {
   .profile__button-add {
-    background-image: url("../../../../images/Add\ Button_Wide.svg");
+    background-image: url("../../../images/AddButtonWide.svg");
     margin: 30px 0 0 0;
     width: 282px;
     grid-area: add;
