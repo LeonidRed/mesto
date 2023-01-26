@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto-Russia</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <script defer src="./script.js"></script>
+    <script defer src="./vendor/script.js"></script>
   </head>
   <body>
-    <!-- ------------- page start ------------ -->
+    <!-- ------------ page start ------------ -->
     <div class="page">
 
-      <!-- ------------- header start ------------ -->
+      <!-- ------------ header start ------------ -->
       <header class="header header_offset_vertical">
         <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
       </header>
@@ -29,23 +29,22 @@
             <h1 class="profile__info-name">Жак-Ив Кусто</h1>
             <p class="profile__info-profession">Исследователь океана</p>
           </div>
-          <img class="profile__button_edit" src="./images/Edit Button.svg"
-            alt="Кнопка редактирования">
-          <img class="profile__button_add" src="./images/Add Button.svg"
-            alt="Кнопка добавить">
+          <button class="profile__button-edit" type="button">
+          </button>
+          <button class="profile__button-add" type="button">
+          </button>
         </section>
         <!-- ------------- profile end ------------ -->
 
         <!-- ------------- elements start ------------ -->
-        <section class="elements">
+        <section class="elements" aria-label="Фото природы России">
           <article class="element">
             <img class="element__picture"
               src="./images/element__city_karachaevsk.jpg" alt="Вид на
               Карачаевск">
             <div class="element__area">
               <h2 class="element__area-title">Карачаевск</h2>
-              <img class="element__area-like" src="./images/like.svg"
-                alt="Лайк">
+              <button class="element__area-like" type="button"></button>
             </div>
           </article>
 
@@ -55,10 +54,7 @@
               Карачаевск">
             <div class="element__area">
               <h2 class="element__area-title">Гора Эльбрус</h2>
-              <!-- Обернул в ссылку -->
-              <a href="#" target="_blank"><img class="element__area-like"
-                  src="./images/like.svg"
-                  alt="Лайк"></a>
+              <button class="element__area-like" type="button"></button>
             </div>
           </article>
 
@@ -68,8 +64,7 @@
               Карачаевск">
             <div class="element__area">
               <h2 class="element__area-title">Домбай</h2>
-              <img class="element__area-like" src="./images/like.svg"
-                alt="Лайк">
+              <button class="element__area-like" type="button"></button>
             </div>
           </article>
 
@@ -79,8 +74,7 @@
               Карачаевск">
             <div class="element__area">
               <h2 class="element__area-title">Гора-Эльбрус</h2>
-              <img class="element__area-like" src="./images/like.svg"
-                alt="Лайк">
+              <button class="element__area-like" type="button"></button>
             </div>
           </article>
 
@@ -90,8 +84,7 @@
               Карачаевск">
             <div class="element__area">
               <h2 class="element__area-title">Домбай</h2>
-              <img class="element__area-like" src="./images/like.svg"
-                alt="Лайк">
+              <button class="element__area-like" type="button"></button>
             </div>
           </article>
 
@@ -101,8 +94,7 @@
               Карачаевск">
             <div class="element__area">
               <h2 class="element__area-title">Карачаево-Черкессия</h2>
-              <img class="element__area-like" src="./images/like.svg"
-                alt="Лайк">
+              <button class="element__area-like" type="button"></button>
             </div>
           </article>
 
@@ -116,7 +108,22 @@
         <p class="footer__copyright">© 2023 Mesto Russia</p>
       </footer>
       <!-- ------------- footer end ------------ -->
+
+      <!-- ------------- popup start ------------ -->
+      <article class="popup">
+        <form class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input-name" type="text" placeholder="введите имя"
+            autofocus>
+          <input class="popup__input-prof" type="text" placeholder="введите профессию">
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__button-exit" type="button"></button>
+      </article>
+      <!-- ------------- popup end ------------ -->
+
     </div>
     <!-- ------------- page end ------------ -->
+
   </body>
 </html>

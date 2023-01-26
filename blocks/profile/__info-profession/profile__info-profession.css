@@ -4,6 +4,17 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
+  max-width: 345px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
-
+@media screen and (max-width: 750px) {
+  .profile__info-profession {
+    font-size: 14px;
+    line-height: 16.94px;
+    margin: 8px 0 0 0;
+    text-align: center;
+  }
 }
