@@ -2,13 +2,6 @@
   box-sizing: border-box;
   background-color: #fff;
   width: 430px;
-  height: 330px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  border-radius: 10px;
-  padding: 0 36px;
-
   grid-area: container;
 }
 
@@ -16,7 +9,5 @@
 @media screen and (max-width: 750px) {
   .popup__container {
     width: 282px;
-    height: 322px;
-    padding: 0 22px;
   }
 }

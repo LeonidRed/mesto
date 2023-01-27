@@ -5,6 +5,6 @@
 @media screen and (max-width: 750px) {
   .profile__info {
     grid-area: info;
-    margin: 26px -45px 0 0;
+    margin: 26px 0 0 45px;
   }
 }

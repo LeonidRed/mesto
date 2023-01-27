@@ -11,12 +11,11 @@
   height: 19px;
 }
 
-
 .element__area-like:hover {
-  opacity: 60%;
+  opacity: 50%;
   cursor: pointer;
 }
 
-.element__area-like:active {
+.element__area-like:activ {
   background-image: url(../../../images/like_active.svg);
 }
