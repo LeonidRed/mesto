@@ -16,6 +16,6 @@
   cursor: pointer;
 }
 
-.element__area-like:activ {
+.element__area-like:active {
   background-image: url(../../../images/like_active.svg);
 }
