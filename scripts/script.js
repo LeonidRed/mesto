@@ -1,6 +1,5 @@
 // Выбираем кнопки
 const editBtn = document.querySelector('.profile__button-edit')
-const addBtn = document.querySelector('.profile__button-add')
 const exitBtn = document.querySelector('.popup__button-exit')
 // Выбираем модальное окно и input в нём
 const popup = document.querySelector('.popup')
@@ -10,7 +9,6 @@ const popupInputProf = document.querySelector('#input-prof')
 // Выбираем поля из секции profile
 const profileInfoName = document.querySelector('.profile__info-name')
 const profileInfoProf = document.querySelector('.profile__info-profession')
-
 
 // Функция и обработчик на открытие и закрытие модального окна
 function openPopup() {
