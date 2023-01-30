@@ -1,6 +1,8 @@
 // Выбираем кнопки
 const editBtn = document.querySelector('.profile__button-edit')
 const exitBtn = document.querySelector('.popup__button-exit')
+const addBtn = document.querySelector('.profile__button-add')
+const delBtn = document.querySelector('.element__button-del')
 // Выбираем модальное окно и input в нём
 const popup = document.querySelector('.popup')
 const popupForm = document.querySelector('.popup__form')
@@ -41,3 +43,49 @@ function saveInputPopup(event) {
 }
 
 popupForm.addEventListener('submit', saveInputPopup)
+
+// --------------- element-template --------------------
+
+// массив для elements
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const elementTemplate = document.querySelector('#element-template').content.querySelector('.element')
+const elementsContainer = document.querySelector('.elements')
+
+// Функция отрисовывает каждый element
+function renderElement() {
+  initialCards.forEach((item) => {
+    elementTemplate.querySelector('.element__picture').src = item.link
+    elementTemplate.querySelector('.element__picture').alt = item.name
+    elementTemplate.querySelector('.element__area-title').textContent = item.name
+    const element = elementTemplate.cloneNode(true)
+    elementsContainer.prepend(element)
+  })
+}
+
+renderElement()

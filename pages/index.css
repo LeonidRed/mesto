@@ -22,6 +22,7 @@
 /* ------------- elements ------------  */
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__button-del/element__button-del.css);
 @import url(../blocks/element/__picture/element__picture.css);
 @import url(../blocks/element/__area/element__area.css);
 @import url(../blocks/element/__area-title/element__area-title.css);

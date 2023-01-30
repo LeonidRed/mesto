@@ -1,5 +1,5 @@
-.element__area-like {
-  background-image: url(../../../images/like.svg);
+.element__button-del {
+  background-image: url(../../../images/DelButton.svg);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -7,15 +7,14 @@
   border-radius: 0;
   background-color: transparent;
   padding: 0;
-  width: 22px;
+  width: 18px;
   height: 19px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
-.element__area-like:hover {
+.element__button-del:hover {
   opacity: 50%;
   cursor: pointer;
-}
-
-.element__area-like:active {
-  background-image: url(../../../images/like_active.svg);
 }
