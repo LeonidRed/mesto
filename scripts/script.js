@@ -1,10 +1,11 @@
 // Выбираем кнопки
 const editBtn = document.querySelector('.profile__button-edit')
-const exitBtn = document.querySelector('.popup__button-exit')
+const exitBtn = document.querySelectorAll('.popup__button-exit')
 const addBtn = document.querySelector('.profile__button-add')
 const delBtn = document.querySelector('.element__button-del')
 // Выбираем модальное окно и input в нём
 const popup = document.querySelector('.popup')
+const popupAdd = document.querySelector('.popup-add')
 const popupForm = document.querySelector('.popup__form')
 const popupInputName = document.querySelector('#input-name')
 const popupInputProf = document.querySelector('#input-prof')
@@ -12,19 +13,27 @@ const popupInputProf = document.querySelector('#input-prof')
 const profileInfoName = document.querySelector('.profile__info-name')
 const profileInfoProf = document.querySelector('.profile__info-profession')
 
-// Функция и обработчик на открытие и закрытие модального окна
-function openPopup() {
-  popup.classList.add('popup_opened')
-  popupInputName.value = profileInfoName.textContent
-  popupInputProf.value = profileInfoProf.textContent
+// Функция и обработчик на открытие и закрытие модальных окон
+function openPopup(e) {
+  if (e.target.classList.contains('profile__button-edit')) {
+    popup.classList.add('popup_opened')
+    popupInputName.value = profileInfoName.textContent
+    popupInputProf.value = profileInfoProf.textContent
+  } else if (e.target.classList.contains('profile__button-add')) {
+    popupAdd.classList.add('popup_opened')
+  }
 }
 
 function closePopup() {
   popup.classList.remove('popup_opened')
+  popupAdd.classList.remove('popup_opened')
 }
 
 editBtn.addEventListener('click', openPopup)
-exitBtn.addEventListener('click', closePopup)
+for (let i = 0; i < exitBtn.length; ++i) {
+  exitBtn[i].addEventListener('click', closePopup)
+}
+addBtn.addEventListener('click', openPopup)
 // Закрываем модальное окно по клику на любом месте
 // popup.addEventListener('click', function (event) {
 //   if (event.target === event.currentTarget) {
@@ -33,7 +42,6 @@ exitBtn.addEventListener('click', closePopup)
 // })
 
 //Функция и обработчик на сохранение профиля
-
 function saveInputPopup(event) {
   event.preventDefault()
 

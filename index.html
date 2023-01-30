@@ -129,20 +129,37 @@
       </footer>
       <!-- ------------- footer end ------------ -->
 
-      <!-- ------------- popup start ------------ -->
+      <!-- ------------- popup-edit start ------------ -->
       <div class="popup">
         <div class="popup__container">
         <form class="popup__form" action="" method="get" name="popup-form">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input" id="input-name" name="name" type="text" placeholder="введите имя"
+          <input class="popup__input" id="input-name" name="name" type="text" placeholder="Введите имя"
             autofocus required>
-          <input class="popup__input" id="input-prof" name="prof" type="text" placeholder="введите профессию" required>
+          <input class="popup__input" id="input-prof" name="prof" type="text" placeholder="Введите профессию" required>
           <button class="popup__button-save" type="submit">Сохранить</button>
         </form>
         </div>
         <button class="popup__button-exit" type="button" aria-label="Кнопка закрыть окно редактирования"></button>
       </div>
-      <!-- ------------- popup end ------------ -->
+      <!-- ------------- popup-edit end ------------ -->
+
+      <!-- ------------- popup-add start ------------ -->
+      <div class="popup popup-add">
+        <div class="popup__container">
+        <form class="popup__form" action="" method="get" name="popup-form">
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input" id="input-title" name="title" type="text" placeholder="Название"
+            autofocus required>
+          <input class="popup__input" id="input-link" name="link" type="text" placeholder="Ссылка на картинку" required>
+          <button class="popup__button-save popup__button-create" type="submit">Создать</button>
+        </form>
+        </div>
+        <button class="popup__button-exit" type="button" aria-label="Кнопка закрыть окно редактирования"></button>
+      </div>
+      <!-- ------------- popup-add end ------------ -->
+
+
 
     </div>
     <!-- ------------- page end ------------ -->
