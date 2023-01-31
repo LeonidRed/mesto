@@ -3,6 +3,8 @@ const editBtn = document.querySelector('.profile__button-edit')
 const exitBtn = document.querySelectorAll('.popup__button-exit')
 const addBtn = document.querySelector('.profile__button-add')
 const delBtn = document.querySelector('.element__button-del')
+
+
 // Выбираем модальное окно и input в нём
 const popup = document.querySelector('.popup')
 const popupAdd = document.querySelector('.popup-add')
@@ -97,3 +99,12 @@ function renderElement() {
 }
 
 renderElement()
+
+// добавление лайк-кнопки
+const likeBtn = document.querySelectorAll('.element__area-like')
+for (let i = 0; i < likeBtn.length; ++i) {
+  likeBtn[i].addEventListener('click', function () {
+    likeBtn[i].classList.toggle('element__area-like_active')
+  })
+}
+

@@ -27,6 +27,7 @@
 @import url(../blocks/element/__area/element__area.css);
 @import url(../blocks/element/__area-title/element__area-title.css);
 @import url(../blocks/element/__area-like/element__area-like.css);
+@import url(../blocks/element/__area-like/_active/element__area-like_active.css);
 
 /* ------------- footer ------------  */
 @import url(../blocks/footer/footer.css);
