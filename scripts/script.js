@@ -3,14 +3,15 @@ const editBtn = document.querySelector('.profile__button-edit')
 const exitBtn = document.querySelectorAll('.popup__button-exit')
 const addBtn = document.querySelector('.profile__button-add')
 const delBtn = document.querySelector('.element__button-del')
-
-
 // Выбираем модальное окно и input в нём
 const popup = document.querySelector('.popup')
 const popupAdd = document.querySelector('.popup-add')
 const popupForm = document.querySelector('.popup__form')
+const popupFormAdd = document.querySelector('.popup__form_add')
 const popupInputName = document.querySelector('#input-name')
 const popupInputProf = document.querySelector('#input-prof')
+const popupInputTitle = document.querySelector('#input-title')
+const popupInputLink = document.querySelector('#input-link')
 // Выбираем поля из секции profile
 const profileInfoName = document.querySelector('.profile__info-name')
 const profileInfoProf = document.querySelector('.profile__info-profession')
@@ -95,16 +96,50 @@ function renderElement() {
     elementTemplate.querySelector('.element__area-title').textContent = item.name
     const element = elementTemplate.cloneNode(true)
     elementsContainer.prepend(element)
+
+    // добавление лайк-кнопки
+    const likeBtn = element.querySelector('.element__area-like')
+  likeBtn.addEventListener('click', function () {
+    likeBtn.classList.toggle('element__area-like_active')
+  })
+
+    // добавление удаления-кнопки
+    const delBtn = element.querySelector('.element__button-del')
+    delBtn.addEventListener('click', function () {
+      element.remove()
+    })
   })
 }
 
 renderElement()
 
-// добавление лайк-кнопки
-const likeBtn = document.querySelectorAll('.element__area-like')
-for (let i = 0; i < likeBtn.length; ++i) {
-  likeBtn[i].addEventListener('click', function () {
-    likeBtn[i].classList.toggle('element__area-like_active')
+
+//Функция и обработчик на сохранение новый карточки
+function addInputPopup(event) {
+  event.preventDefault()
+
+    elementTemplate.querySelector('.element__picture').src = popupInputLink.value
+    elementTemplate.querySelector('.element__picture').alt = popupInputTitle.value
+    elementTemplate.querySelector('.element__area-title').textContent = popupInputTitle.value
+    const element = elementTemplate.cloneNode(true)
+    elementsContainer.prepend(element)
+
+
+  // добавление лайк-кнопки
+  const likeBtn = element.querySelector('.element__area-like')
+  likeBtn.addEventListener('click', function () {
+    likeBtn.classList.toggle('element__area-like_active')
   })
+
+  // добавление удаления-кнопки
+  const delBtn = element.querySelector('.element__button-del')
+    delBtn.addEventListener('click', function () {
+      element.remove()
+    })
+
+  closePopup()
+  popupInputLink.value = ''
+  popupInputTitle.value = ''
 }
 
+popupFormAdd.addEventListener('submit', addInputPopup)
