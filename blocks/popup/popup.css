@@ -22,7 +22,7 @@
 
   /* добавляем анимацию */
   opacity: 0;
-  transition: opacity .7s;
+  transition: opacity 1s, visibility 1s;
 }
 
 @media screen and (max-width: 750px) {
