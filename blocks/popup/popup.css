@@ -5,6 +5,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  display: grid;
   grid-template-columns: 430px 32px;
   grid-template-rows: 32px 330px;
   gap: 8px;
@@ -17,7 +18,11 @@
   padding: 0 0 0 40px;
 
   /* скрываем блок */
-  display: none;
+  visibility: hidden;
+
+  /* добавляем анимацию */
+  opacity: 0;
+  transition: opacity .7s;
 }
 
 @media screen and (max-width: 750px) {

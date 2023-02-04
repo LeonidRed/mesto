@@ -6,12 +6,17 @@ const delBtn = document.querySelector('.element__button-del')
 // Выбираем модальное окно и input в нём
 const popup = document.querySelector('.popup')
 const popupAdd = document.querySelector('.popup-add')
+const popupImg = document.querySelector('.popup-image')
 const popupForm = document.querySelector('.popup__form')
 const popupFormAdd = document.querySelector('.popup__form_add')
 const popupInputName = document.querySelector('#input-name')
 const popupInputProf = document.querySelector('#input-prof')
 const popupInputTitle = document.querySelector('#input-title')
 const popupInputLink = document.querySelector('#input-link')
+// Выбираем
+const popupFigureImage = document.querySelector('.popup__figure-image')
+const popupFigureCaption = document.querySelector('.popup__figure-caption')
+
 // Выбираем поля из секции profile
 const profileInfoName = document.querySelector('.profile__info-name')
 const profileInfoProf = document.querySelector('.profile__info-profession')
@@ -30,6 +35,7 @@ function openPopup(e) {
 function closePopup() {
   popup.classList.remove('popup_opened')
   popupAdd.classList.remove('popup_opened')
+  popupImg.classList.remove('popup_opened')
 }
 
 editBtn.addEventListener('click', openPopup)
@@ -108,6 +114,16 @@ function renderElement() {
     delBtn.addEventListener('click', function () {
       element.remove()
     })
+
+    // добавление попапа с картинкой
+    const elementPic = element.querySelector('.element__picture')
+    elementPic.addEventListener('click', function () {
+      popupImg.classList.add('popup_opened')
+      popupFigureImage.src = item.link
+      popupFigureImage.alt = item.name
+      popupFigureCaption.textContent = item.name
+    })
+
   })
 }
 
@@ -124,6 +140,9 @@ function addInputPopup(event) {
     const element = elementTemplate.cloneNode(true)
     elementsContainer.prepend(element)
 
+    closePopup()
+    popupInputLink.value = ''
+    popupInputTitle.value = ''
 
   // добавление лайк-кнопки
   const likeBtn = element.querySelector('.element__area-like')
@@ -137,9 +156,15 @@ function addInputPopup(event) {
       element.remove()
     })
 
-  closePopup()
-  popupInputLink.value = ''
-  popupInputTitle.value = ''
+  // добавление попапа с картинкой
+  const elementPic = element.querySelector('.element__picture')
+  elementPic.addEventListener('click', function () {
+    popupImg.classList.add('popup_opened')
+    popupFigureImage.src = elementTemplate.querySelector('.element__picture').src
+    console.log(elementTemplate.querySelector('.element__picture').textContent);
+    popupFigureImage.alt = elementTemplate.querySelector('.element__picture').alt
+    popupFigureCaption.textContent = elementTemplate.querySelector('.element__picture').alt
+  })
 }
 
 popupFormAdd.addEventListener('submit', addInputPopup)

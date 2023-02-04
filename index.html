@@ -150,7 +150,7 @@
         <form class="popup__form popup__form_add" action="" method="get" name="popup-form">
           <h2 class="popup__title">Новое место</h2>
           <input class="popup__input" id="input-title" name="title" type="text" placeholder="Название"
-            autofocus required>
+            required>
           <input class="popup__input" id="input-link" name="link" type="text" placeholder="Ссылка на картинку" required>
           <button class="popup__button-save popup__button-create" type="submit">Создать</button>
         </form>
@@ -159,7 +159,18 @@
       </div>
       <!-- ------------- popup-add end ------------ -->
 
-
+      <!-- ------------- popup-image start ------------ -->
+      <div class="popup popup-image">
+        <div class="popup__container popup__container_image">
+          <figure class="popup__figure">
+            <img  class="popup__figure-image" src=""
+                  alt="">
+            <figcaption class="popup__figure-caption"></figcaption>
+          </figure>
+        </div>
+        <button class="popup__button-exit" type="button" aria-label="Кнопка закрыть окно редактирования"></button>
+      </div>
+      <!-- ------------- popup-image end ------------ -->
 
     </div>
     <!-- ------------- page end ------------ -->
