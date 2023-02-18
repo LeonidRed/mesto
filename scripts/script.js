@@ -56,7 +56,7 @@ const profileInfoProf = document.querySelector('.profile__info-profession')
 function openPopup(popup) {
   popup.classList.add('popup_opened'); 
   popup.addEventListener('click', closePopupOnOverlayClick) // слушатель на overlay
-  popup.addEventListener('click', closePopupOnButtonClick)  // слушатель на кнопку
+  popup.addEventListener('click', closePopupOnCrossButton)  // слушатель на кнопку
   document.addEventListener('keydown', closePopupOnEsc)  // слушатель на Escape
 }
 
