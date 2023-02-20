@@ -95,9 +95,9 @@ popupProfileOpenButton.addEventListener('click', function() {
   openPopup(popupProfile)
   popupProfileInputName.value = profileInfoName.textContent
   popupProfileInputProf.value = profileInfoProf.textContent
-  hideInputError(popupProfile, popupProfileInputName)
-  hideInputError(popupProfile, popupProfileInputProf)
-  enableValidation()
+  hideInputError(popupProfile, popupProfileInputName, formConfig)
+  hideInputError(popupProfile, popupProfileInputProf, formConfig)
+  enableValidation(formConfig)
 })
 
 // Обработчик на кнопку добавления новой карточки
