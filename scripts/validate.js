@@ -1,5 +1,3 @@
-
-
 // Функция добавляет класс с ошибкой
 const showInputError = (form, formInput, errorMessage) => {
   const errorElement = form.querySelector(`.${formInput.id}-error`);
@@ -48,11 +46,10 @@ const setEventListeners = (form) => {
 };
 
 // Функция добавляет слушатель всем формам
-const enableValidation = () => { 
+const enableValidation = () => {
   // Найдём все формы с указанным классом в DOM,
   // сделаем из них массив методом Array.from
   const formList = Array.from(document.querySelectorAll('.popup__form'));
-  console.log(formList);
   // Переберём полученную коллекцию
   formList.forEach((form) => {
     // Для каждой формы вызовем функцию setEventListeners,
@@ -60,7 +57,7 @@ const enableValidation = () => {
     setEventListeners(form);
   });
 };
-  
+
 // Функция проверяет наличие невалидного input
 const hasInvalidInput = (inputList) => {
   // проходим по этому массиву методом some
@@ -77,10 +74,13 @@ const toggleButtonState = (inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
+    buttonElement.setAttribute('disabled', 'disabled')
     buttonElement.classList.add('popup__button-save_inactive');
   } else {
     // иначе сделай кнопку активной
+    buttonElement.removeAttribute('disabled')
     buttonElement.classList.remove('popup__button-save_inactive');
+
   }
 };
 

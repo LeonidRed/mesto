@@ -54,7 +54,7 @@ const profileInfoProf = document.querySelector('.profile__info-profession')
 
 // Для открытия попапа
 function openPopup(popup) {
-  popup.classList.add('popup_opened'); 
+  popup.classList.add('popup_opened');
   popup.addEventListener('click', closePopupOnOverlayClick) // слушатель на overlay
   popup.addEventListener('click', closePopupOnCrossButton)  // слушатель на кнопку
   window.addEventListener('keydown', closePopupOnEsc)  // слушатель на Escape
@@ -84,7 +84,7 @@ function closePopupOnCrossButton(event) {
 
 // Функция закрывает попап по нажатию на Escape
 function closePopupOnEsc(event) {
-  if(event.key === 'Escape' || event.key === 'Esc'){ 
+  if(event.key === 'Escape' || event.key === 'Esc'){
     const activePopup = document.querySelector('.popup_opened')
     closePopup(activePopup)
   }
@@ -95,6 +95,9 @@ popupProfileOpenButton.addEventListener('click', function() {
   openPopup(popupProfile)
   popupProfileInputName.value = profileInfoName.textContent
   popupProfileInputProf.value = profileInfoProf.textContent
+  hideInputError(popupProfile, popupProfileInputName)
+  hideInputError(popupProfile, popupProfileInputProf)
+  enableValidation()
 })
 
 // Обработчик на кнопку добавления новой карточки
@@ -105,9 +108,11 @@ popupAddCardOpenButton.addEventListener('click', function() {
 //Функция и обработчик на кнопку сохранение профиля
 function savePopupProfileInput(event) {
   event.preventDefault()
-  profileInfoName.textContent = popupProfileInputName.value
-  profileInfoProf.textContent = popupProfileInputProf.value
-  closePopup(event.target.parentNode.parentNode)
+  if (popupProfileInputName.value && popupProfileInputProf.value) {
+    profileInfoName.textContent = popupProfileInputName.value
+    profileInfoProf.textContent = popupProfileInputProf.value
+    closePopup(event.target.parentNode.parentNode)
+  }
 }
 
 popupProfileForm.addEventListener('submit', savePopupProfileInput)

@@ -30,9 +30,11 @@
             <h1 class="profile__info-name">Жак-Ив Кусто</h1>
             <p class="profile__info-profession">Исследователь океана</p>
           </div>
-          <button class="profile__button-edit" type="button" aria-label="Кнопка редактирования профиля">
+          <button class="profile__button-edit" type="button" aria-label="Кнопка
+            редактирования профиля">
           </button>
-          <button class="profile__button-add" type="button" aria-label="Кнопка добавления фото">
+          <button class="profile__button-add" type="button" aria-label="Кнопка
+            добавления фото">
           </button>
         </section>
         <!-- ------------- profile end ------------ -->
@@ -44,11 +46,13 @@
 
           <template id="element-template">
             <article class="element">
-              <button class="element__button-del" type="button" aria-label="Кнопка удалить"></button>
+              <button class="element__button-del" type="button"
+                aria-label="Кнопка удалить"></button>
               <img class="element__picture">
               <div class="element__area">
                 <h2 class="element__area-title"></h2>
-                <button class="element__area-like" type="button" aria-label="Кнопка нравится"></button>
+                <button class="element__area-like" type="button"
+                  aria-label="Кнопка нравится"></button>
               </div>
             </article>
           </template>
@@ -67,33 +71,47 @@
       <!-- ------------- popup-profile start ------------ -->
       <div class="popup popup-profile">
         <div class="popup__container">
-        <form class="popup__form popup__form-profile" action="#" method="get" name="popup-edit-form" novalidate>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input" id="input-name" name="name" type="text" placeholder="Введите имя" minlength="2" maxlength="40" required>
-          <span class="popup__input-error input-name-error">Вы пропустили это поле</span>
-          <input class="popup__input" id="input-prof" name="prof" type="text" placeholder="Введите профессию" minlength="2" maxlength="200" required>
-          <span class="popup__input-error input-prof-error">Вы пропустили это поле</span>
-          <button class="popup__button-save" type="submit">Сохранить</button>
-        </form>
+          <form class="popup__form popup__form-profile" action="#" method="get"
+            name="popup-edit-form" novalidate>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input class="popup__input" id="input-name" name="name" type="text"
+              placeholder="Введите имя" minlength="2" maxlength="40" required>
+            <span class="popup__input-error input-name-error">Вы пропустили это
+              поле</span>
+            <input class="popup__input" id="input-prof" name="prof" type="text"
+              placeholder="Введите профессию" minlength="2" maxlength="200"
+              required>
+            <span class="popup__input-error input-prof-error">Вы пропустили это
+              поле</span>
+            <button class="popup__button-save" type="submit" disabled>Сохранить</button>
+          </form>
         </div>
-        <button class="popup__button-exit" type="button" aria-label="Кнопка закрыть окно редактирования"></button>
+        <button class="popup__button-exit" type="button" aria-label="Кнопка
+          закрыть окно редактирования"></button>
       </div>
       <!-- ------------- popup-edit end ------------ -->
 
       <!-- ------------- popup-add start ------------ -->
       <div class="popup popup-add">
         <div class="popup__container">
-        <form class="popup__form popup__form_add" action="#" method="get" name="popup-add-form">
-          <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input" id="input-title" name="title" type="text" placeholder="Название" minlength="2" maxlength="30"
-            required>
-          <span class="popup__input-error input-title-error">Вы пропустили это поле</span>
-          <input class="popup__input" id="input-link" name="link" type="url" placeholder="Ссылка на картинку" required>
-          <span class="popup__input-error input-link-error">Вы пропустили это поле</span>
-          <button class="popup__button-save popup__button-create" type="submit">Создать</button>
-        </form>
+          <form class="popup__form popup__form_add" action="#" method="get"
+            name="popup-add-form" novalidate>
+            <h2 class="popup__title">Новое место</h2>
+            <input class="popup__input" id="input-title" name="title"
+              type="text" placeholder="Название" minlength="2" maxlength="30"
+              required>
+            <span class="popup__input-error input-title-error">Вы пропустили это
+              поле</span>
+            <input class="popup__input" id="input-link" name="link" type="url"
+              placeholder="Ссылка на картинку" required>
+            <span class="popup__input-error input-link-error">Вы пропустили это
+              поле</span>
+            <button class="popup__button-save popup__button-create"
+              type="submit" disabled>Создать</button>
+          </form>
         </div>
-        <button class="popup__button-exit" type="button" aria-label="Кнопка закрыть окно редактирования"></button>
+        <button class="popup__button-exit" type="button" aria-label="Кнопка
+          закрыть окно редактирования"></button>
       </div>
       <!-- ------------- popup-add end ------------ -->
 
@@ -101,12 +119,13 @@
       <div class="popup popup-image">
         <div class="popup__container popup__container_image">
           <figure class="popup__figure">
-            <img  class="popup__figure-image" src="#"
-                  alt="#">
+            <img class="popup__figure-image" src="#"
+              alt="#">
             <figcaption class="popup__figure-caption"></figcaption>
           </figure>
         </div>
-        <button class="popup__button-exit" type="button" aria-label="Кнопка закрыть окно редактирования"></button>
+        <button class="popup__button-exit" type="button" aria-label="Кнопка
+          закрыть окно редактирования"></button>
       </div>
       <!-- ------------- popup-image end ------------ -->
 
