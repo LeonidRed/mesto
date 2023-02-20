@@ -67,11 +67,12 @@
       <!-- ------------- popup-profile start ------------ -->
       <div class="popup popup-profile">
         <div class="popup__container">
-        <form class="popup__form popup__form-profile" action="#" method="get" name="popup-edit-form">
+        <form class="popup__form popup__form-profile" action="#" method="get" name="popup-edit-form" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input" id="input-name" name="name" type="text" placeholder="Введите имя"
-            required>
-          <input class="popup__input" id="input-prof" name="prof" type="text" placeholder="Введите профессию" required>
+          <input class="popup__input" id="input-name" name="name" type="text" placeholder="Введите имя" minlength="2" maxlength="40" required>
+          <span class="popup__input-error input-name-error">Вы пропустили это поле</span>
+          <input class="popup__input" id="input-prof" name="prof" type="text" placeholder="Введите профессию" minlength="2" maxlength="200" required>
+          <span class="popup__input-error input-prof-error">Вы пропустили это поле</span>
           <button class="popup__button-save" type="submit">Сохранить</button>
         </form>
         </div>
@@ -84,9 +85,11 @@
         <div class="popup__container">
         <form class="popup__form popup__form_add" action="#" method="get" name="popup-add-form">
           <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input" id="input-title" name="title" type="text" placeholder="Название"
+          <input class="popup__input" id="input-title" name="title" type="text" placeholder="Название" minlength="2" maxlength="30"
             required>
-          <input class="popup__input" id="input-link" name="link" type="text" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error input-title-error">Вы пропустили это поле</span>
+          <input class="popup__input" id="input-link" name="link" type="url" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error input-link-error">Вы пропустили это поле</span>
           <button class="popup__button-save popup__button-create" type="submit">Создать</button>
         </form>
         </div>
@@ -95,7 +98,7 @@
       <!-- ------------- popup-add end ------------ -->
 
       <!-- ------------- popup-image start ------------ -->
-      <div class="popup popup-image" tabindex="-1">
+      <div class="popup popup-image">
         <div class="popup__container popup__container_image">
           <figure class="popup__figure">
             <img  class="popup__figure-image" src="#"

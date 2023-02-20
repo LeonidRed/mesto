@@ -57,7 +57,8 @@ function openPopup(popup) {
   popup.classList.add('popup_opened'); 
   popup.addEventListener('click', closePopupOnOverlayClick) // слушатель на overlay
   popup.addEventListener('click', closePopupOnCrossButton)  // слушатель на кнопку
-  document.addEventListener('keydown', closePopupOnEsc)  // слушатель на Escape
+  window.addEventListener('keydown', closePopupOnEsc)  // слушатель на Escape
+  popup.addEventListener('keydown', closePopupOnEsc)
 }
 
 // Для закрытия попапа
@@ -65,7 +66,8 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('click', closePopupOnOverlayClick) // убираем слушатель на overlay
   popup.removeEventListener('click', closePopupOnCrossButton) // убираем слушатель на кнопку-крестик
-  document.removeEventListener('keydown', closePopupOnEsc)  // убираем слушатель на Escape
+  window.removeEventListener('keydown', closePopupOnEsc)  // убираем слушатель на Escape
+  popup.removeEventListener('keydown', closePopupOnEsc)
 }
 
 // Функция закрывает попап по клику на overlay

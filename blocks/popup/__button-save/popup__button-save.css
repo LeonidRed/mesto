@@ -1,5 +1,5 @@
 .popup__button-save {
-  margin: 45px 0 0 0;
+  margin: 5px 0 0 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -23,6 +23,7 @@
   }
 }
 
+/* .popup__button-save:active, */
 .popup__button-save:hover {
   cursor: pointer;
   opacity: 80%;
