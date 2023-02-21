@@ -30,6 +30,7 @@ const initialCards = [
 const popupProfileOpenButton = document.querySelector('.profile__button-edit')
 //const popupCloseButton = document.querySelectorAll('.popup__button-exit')
 const popupAddCardOpenButton = document.querySelector('.profile__button-add')
+const popupAddCardSaveButton = document.querySelector('.popup__button-create')
 const cardDeleteButton = document.querySelector('.element__button-del')
 
 // Выбираем модальные окна и input в них
@@ -103,6 +104,8 @@ popupProfileOpenButton.addEventListener('click', function() {
 // Обработчик на кнопку добавления новой карточки
 popupAddCardOpenButton.addEventListener('click', function() {
   openPopup(popupAddCard)
+  popupAddCardSaveButton.setAttribute('disabled', 'disabled')
+  popupAddCardSaveButton.classList.add('popup__button-save_inactive')
 })
 
 //Функция и обработчик на кнопку сохранение профиля

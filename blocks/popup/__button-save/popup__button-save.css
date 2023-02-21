@@ -23,7 +23,6 @@
   }
 }
 
-/* .popup__button-save:active, */
 .popup__button-save:hover {
   cursor: pointer;
   opacity: 80%;
