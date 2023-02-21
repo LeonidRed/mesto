@@ -26,9 +26,11 @@ const initialCards = [
   }
 ]
 
+// Выбираем все попапы
+const popup = document.querySelectorAll('.popup')
 // Выбираем кнопки
 const popupProfileOpenButton = document.querySelector('.profile__button-edit')
-//const popupCloseButton = document.querySelectorAll('.popup__button-exit')
+const popupCloseButton = document.querySelectorAll('.popup__button-exit')
 const popupAddCardOpenButton = document.querySelector('.profile__button-add')
 const popupAddCardSaveButton = document.querySelector('.popup__button-create')
 const cardDeleteButton = document.querySelector('.element__button-del')
@@ -56,39 +58,38 @@ const profileInfoProf = document.querySelector('.profile__info-profession')
 // Для открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('click', closePopupOnOverlayClick) // слушатель на overlay
-  popup.addEventListener('click', closePopupOnCrossButton)  // слушатель на кнопку
   window.addEventListener('keydown', closePopupOnEsc)  // слушатель на Escape
-  popup.addEventListener('keydown', closePopupOnEsc)
 }
 
 // Для закрытия попапа
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  popup.removeEventListener('click', closePopupOnOverlayClick) // убираем слушатель на overlay
-  popup.removeEventListener('click', closePopupOnCrossButton) // убираем слушатель на кнопку-крестик
-  window.removeEventListener('keydown', closePopupOnEsc)  // убираем слушатель на Escape
-  popup.removeEventListener('keydown', closePopupOnEsc)
+    popup.classList.remove('popup_opened');
+    window.removeEventListener('keydown', closePopupOnEsc)  // убираем слушатель на Escape
 }
 
-// Функция закрывает попап по клику на overlay
-function closePopupOnOverlayClick(event) {
-  if(event.target === event.currentTarget) {
-    closePopup(event.target)
+// Функция закрывает попап по клику на кнопку-крестик или overlay
+function closePopupOnButtonOrOverlay(event) {
+  if (event.target === event.currentTarget || event.target.className === 'popup__button-exit') {
+    checkActivePopup()
   }
 }
 
-// Функция закрывает попап по клику на кнопку-крестик
-function closePopupOnCrossButton(event) {
-  closePopup(event.target.parentNode)
+// Функция находит попап, который сейчас открыт
+function checkActivePopup() {
+  const activePopup = document.querySelector('.popup_opened')
+  closePopup(activePopup)
 }
 
 // Функция закрывает попап по нажатию на Escape
 function closePopupOnEsc(event) {
-  if(event.key === 'Escape' || event.key === 'Esc'){
-    const activePopup = document.querySelector('.popup_opened')
-    closePopup(activePopup)
+  if (event.key === 'Escape') {
+    checkActivePopup()
   }
+}
+
+// Обработчик на все попапы
+for (let i = 0; i < popup.length; ++i) {
+  popup[i].addEventListener('click', closePopupOnButtonOrOverlay)
 }
 
 // Обработчик на кнопку редактирования профиля
@@ -114,7 +115,7 @@ function savePopupProfileInput(event) {
   if (popupProfileInputName.value && popupProfileInputProf.value) {
     profileInfoName.textContent = popupProfileInputName.value
     profileInfoProf.textContent = popupProfileInputProf.value
-    closePopup(event.target.parentNode.parentNode)
+    checkActivePopup()
   }
 }
 
@@ -158,8 +159,9 @@ function createCard(el) {
   })
 
   // добавление попапа с картинкой
+  // на созданном элементе ищу картинку и добавляю слушатель
   const elementPicture = element.querySelector('.element__picture')
-  elementPicture.addEventListener('click', function () {
+    elementPicture.addEventListener('click', function () {
     openPopup(popupImg)
     popupFigureImage.src = el.link
     popupFigureImage.alt = el.name
