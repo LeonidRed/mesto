@@ -70,7 +70,7 @@ function closePopup(popup) {
 // Функция закрывает попап по клику на кнопку-крестик или overlay
 function closePopupOnButtonOrOverlay(event) {
   if (event.target === event.currentTarget || event.target.className === 'popup__button-exit') {
-    checkActivePopup()
+    closePopup(event.currentTarget)
   }
 }
 
@@ -115,7 +115,7 @@ function savePopupProfileInput(event) {
   if (popupProfileInputName.value && popupProfileInputProf.value) {
     profileInfoName.textContent = popupProfileInputName.value
     profileInfoProf.textContent = popupProfileInputProf.value
-    checkActivePopup()
+    closePopup(popupProfile)
   }
 }
 
@@ -181,7 +181,7 @@ function addNewCard(event) {
   const element = createCard({link: link, name: title})
   elementsContainer.prepend(element)
 
-  closePopup(event.target.parentNode.parentNode)
+  closePopup(popupAddCard)
   popupAddCardInputLink.value = ''
   popupAddCardInputTitle.value = ''
 }
