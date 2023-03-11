@@ -1,3 +1,6 @@
+import Card from './Card.js'
+// import { FormValidator } from './FormValidator'
+
 // массив для elements
 const initialCards = [
   {
@@ -40,7 +43,7 @@ const popupProfile = document.querySelector('.popup-profile')
 const popupProfileForm = document.querySelector('.popup__form-profile')
 const popupAddCard = document.querySelector('.popup-add')
 const popupAddCardForm = document.querySelector('.popup__form_add')
-const popupImg = document.querySelector('.popup-image')
+export const popupImg = document.querySelector('.popup-image')
 //popup-edit
 const popupProfileInputName = document.querySelector('#input-name')
 const popupProfileInputProf = document.querySelector('#input-prof')
@@ -48,23 +51,23 @@ const popupProfileInputProf = document.querySelector('#input-prof')
 const popupAddCardInputTitle = document.querySelector('#input-title')
 const popupAddCardInputLink = document.querySelector('#input-link')
 //popup-image
-const popupFigureImage = document.querySelector('.popup__figure-image')
-const popupFigureCaption = document.querySelector('.popup__figure-caption')
+export const popupFigureImage = document.querySelector('.popup__figure-image')
+export const popupFigureCaption = document.querySelector('.popup__figure-caption')
 
 // Выбираем поля из секции profile
 const profileInfoName = document.querySelector('.profile__info-name')
 const profileInfoProf = document.querySelector('.profile__info-profession')
 
 // Для открытия попапа
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   window.addEventListener('keydown', closePopupOnEsc)  // слушатель на Escape
 }
 
 // Для закрытия попапа
 function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    window.removeEventListener('keydown', closePopupOnEsc)  // убираем слушатель на Escape
+  popup.classList.remove('popup_opened');
+  window.removeEventListener('keydown', closePopupOnEsc)  // убираем слушатель на Escape
 }
 
 // Функция закрывает попап по клику на кнопку-крестик или overlay
@@ -93,7 +96,7 @@ for (let i = 0; i < popup.length; ++i) {
 }
 
 // Обработчик на кнопку редактирования профиля
-popupProfileOpenButton.addEventListener('click', function() {
+popupProfileOpenButton.addEventListener('click', function () {
   openPopup(popupProfile)
   popupProfileInputName.value = profileInfoName.textContent
   popupProfileInputProf.value = profileInfoProf.textContent
@@ -103,7 +106,7 @@ popupProfileOpenButton.addEventListener('click', function() {
 })
 
 // Обработчик на кнопку добавления новой карточки
-popupAddCardOpenButton.addEventListener('click', function() {
+popupAddCardOpenButton.addEventListener('click', function () {
   openPopup(popupAddCard)
   popupAddCardSaveButton.setAttribute('disabled', 'disabled')
   popupAddCardSaveButton.classList.add('popup__button-save_inactive')
@@ -127,49 +130,20 @@ popupProfileForm.addEventListener('submit', savePopupProfileInput)
 const elementTemplate = document.querySelector('#element-template').content.querySelector('.element')
 const elementsContainer = document.querySelector('.elements')
 
-// Функция отрисовывает каждый карточку из массива
+// Функция отрисовывает каждую карточку из массива
 function renderElement(arr) {
-  const elements = arr.map((item) => { //проходим по каждому элементу массива и возвращаем новый массив HTMLElement
-    return createCard(item)
+  arr.forEach((item) => {
+    // Создадим экземпляр карточки
+    const card = new Card(item.name, item.link, '#element-template')
+    // Создаём карточку и возвращаем наружу
+    const cardElement = card.createCard()
+
+    // Добавляем в DOM
+    elementsContainer.prepend(cardElement)
   })
-  // Добавляем элементы в DOM
-  elementsContainer.prepend(...elements)
 }
 
 renderElement(initialCards)
-
-// Функция, которая создает карточку
-function createCard(el) {
-  const elementTemplateImg = elementTemplate.querySelector('.element__picture')
-  elementTemplateImg.src = el.link
-  elementTemplateImg.alt = el.name
-  elementTemplate.querySelector('.element__area-title').textContent = el.name
-  const element = elementTemplate.cloneNode(true)
-
-  // добавление лайк-кнопки
-  const likeBtn = element.querySelector('.element__area-like')
-  likeBtn.addEventListener('click', function () {
-    likeBtn.classList.toggle('element__area-like_active')
-  })
-
-  // добавление удаления-кнопки
-  const cardDeleteButton = element.querySelector('.element__button-del')
-  cardDeleteButton.addEventListener('click', function () {
-    element.remove()
-  })
-
-  // добавление попапа с картинкой
-  // на созданном элементе ищу картинку и добавляю слушатель
-  const elementPicture = element.querySelector('.element__picture')
-    elementPicture.addEventListener('click', function () {
-    openPopup(popupImg)
-    popupFigureImage.src = el.link
-    popupFigureImage.alt = el.name
-    popupFigureCaption.textContent = el.name
-  })
-
-  return element
-}
 
 // Функция и обработчик на добавление новой карточки
 function addNewCard(event) {
@@ -178,8 +152,9 @@ function addNewCard(event) {
   const link = popupAddCardInputLink.value
   const title = popupAddCardInputTitle.value
 
-  const element = createCard({link: link, name: title})
-  elementsContainer.prepend(element)
+  const card = new Card(title, link, '#element-template')
+  const cardElement = card.createCard()
+  elementsContainer.prepend(cardElement)
 
   closePopup(popupAddCard)
   popupAddCardInputLink.value = ''
@@ -189,3 +164,4 @@ function addNewCard(event) {
 popupAddCardForm.addEventListener('submit', addNewCard)
 
 // --------------- element-template end --------------------
+
