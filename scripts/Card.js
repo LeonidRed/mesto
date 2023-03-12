@@ -1,9 +1,4 @@
-import { openPopup } from "./index.js"
-
-const popupImg = document.querySelector('.popup-image')
-const popupFigureImage = document.querySelector('.popup__figure-image')
-const popupFigureCaption = document.querySelector('.popup__figure-caption')
-
+import { openPopup, popupImg, popupFigureCaption, popupFigureImage } from "./index.js"
 
 export default class Card {
   constructor(name, link, templateSelector) {
@@ -12,28 +7,12 @@ export default class Card {
     this._templateSelector = templateSelector
   }
 
-  //
   _getTemplate() {
     return document
       .querySelector(this._templateSelector)
       .content
       .querySelector('.element')
       .cloneNode(true)
-  }
-
-  // 
-  createCard() {
-    // Запишем разметку в приватное поле _element, для доступа к ней других элементов
-    this._element = this._getTemplate()
-
-    this._setEventListeners(); // добавим обработчики
-
-    // Добавим данные
-    this._element.querySelector('.element__area-title').textContent = this._name
-    this._element.querySelector('.element__picture').src = this._link
-    this._element.querySelector('.element__picture').alt = this._name
-
-    return this._element
   }
 
   _setEventListeners() {
@@ -64,6 +43,22 @@ export default class Card {
     popupFigureImage.src = this._link
     popupFigureImage.alt = this._name
     popupFigureCaption.textContent = this._name
+  }
+
+
+  // Метод создает Card
+  createCard() {
+    // Запишем разметку в приватное поле _element, для доступа к ней других элементов
+    this._element = this._getTemplate()
+
+    this._setEventListeners(); // добавим обработчики
+
+    // Добавим данные
+    this._element.querySelector('.element__area-title').textContent = this._name
+    this._element.querySelector('.element__picture').src = this._link
+    this._element.querySelector('.element__picture').alt = this._name
+
+    return this._element
   }
 
 }

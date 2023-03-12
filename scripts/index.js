@@ -1,5 +1,5 @@
 import Card from './Card.js'
-// import { FormValidator } from './FormValidator'
+import FormValidator from './FormValidator.js'
 
 // массив для elements
 const initialCards = [
@@ -28,6 +28,15 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]
+
+const formConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}
 
 // Выбираем все попапы
 const popup = document.querySelectorAll('.popup')
@@ -100,9 +109,9 @@ popupProfileOpenButton.addEventListener('click', function () {
   openPopup(popupProfile)
   popupProfileInputName.value = profileInfoName.textContent
   popupProfileInputProf.value = profileInfoProf.textContent
-  hideInputError(popupProfile, popupProfileInputName, formConfig)
-  hideInputError(popupProfile, popupProfileInputProf, formConfig)
-  enableValidation(formConfig)
+  formProfileValidation.hideInputError(popupProfile, popupProfileInputName, formConfig)
+  formProfileValidation.hideInputError(popupProfile, popupProfileInputProf, formConfig)
+  formProfileValidation.enableValidation(formConfig)
 })
 
 // Обработчик на кнопку добавления новой карточки
@@ -127,7 +136,7 @@ popupProfileForm.addEventListener('submit', savePopupProfileInput)
 // --------------- element-template --------------------
 
 // Выбираем шаблон и контейнер для вставки шаблона
-const elementTemplate = document.querySelector('#element-template').content.querySelector('.element')
+//const elementTemplate = document.querySelector('#element-template').content.querySelector('.element')
 const elementsContainer = document.querySelector('.elements')
 
 // Функция отрисовывает каждую карточку из массива
@@ -165,3 +174,8 @@ popupAddCardForm.addEventListener('submit', addNewCard)
 
 // --------------- element-template end --------------------
 
+const formProfileValidation = new FormValidator(formConfig, '.popup__form-profile')
+formProfileValidation.enableValidation(formConfig)
+
+const formNewCardValidation = new FormValidator(formConfig, '.popup__form_add')
+formNewCardValidation.enableValidation(formConfig)
