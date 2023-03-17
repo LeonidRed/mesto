@@ -1,6 +1,7 @@
-import { initialCards, formConfig } from './constants.js'
-import Card from './Card.js'
-import FormValidator from './FormValidator.js'
+import { initialCards, formConfig } from '../utils/constants.js'
+import Card from '../components/Card.js'
+import FormValidator from '../components/FormValidator.js'
+import Section from '../components/Section.js'
 
 // Выбираем все попапы
 const popups = document.querySelectorAll('.popup')
@@ -78,36 +79,39 @@ function savePopupProfileInput(event) {
 }
 
 // --------------- element-template (functions) --------------------
+console.log(initialCards);
+const renderCardsFromArr = new Section({ data: initialCards }, '.elements')
+renderCardsFromArr.renderItems()
 
-// Функция возвращает экземпляр класса Card
-function instanceClassCard(name, link, elementTemplate) {
-  return new Card(name, link, elementTemplate)
-}
+// // Функция возвращает экземпляр класса Card
+// function instanceClassCard(name, link, elementTemplate) {
+//   return new Card(name, link, elementTemplate)
+// }
 
-// Функция отрисовывает каждую карточку из массива
-function renderElement(arr) {
-  arr.forEach((item) => {
-    // Создадим экземпляр карточки
-    const cardElement = instanceClassCard(item.name, item.link, '#element-template').createCard()
+// // Функция отрисовывает каждую карточку из массива
+// function renderElement(arr) {
+//   arr.forEach((item) => {
+//     // Создадим экземпляр карточки
+//     const cardElement = instanceClassCard(item.name, item.link, '#element-template').createCard()
 
-    // Добавляем в DOM
-    elementsContainer.prepend(cardElement)
-  })
-}
+//     // Добавляем в DOM
+//     elementsContainer.prepend(cardElement)
+//   })
+// }
 
-// Функция на добавление новой карточки
-function addNewCard(event) {
-  event.preventDefault()
+// // Функция на добавление новой карточки
+// function addNewCard(event) {
+//   event.preventDefault()
 
-  const link = popupAddCardInputLink.value
-  const title = popupAddCardInputTitle.value
+//   const link = popupAddCardInputLink.value
+//   const title = popupAddCardInputTitle.value
 
-  const cardElement = instanceClassCard(title, link, '#element-template').createCard()
-  elementsContainer.prepend(cardElement)
+//   const cardElement = instanceClassCard(title, link, '#element-template').createCard()
+//   elementsContainer.prepend(cardElement)
 
-  closePopup(popupAddCard)
-  popupAddCardForm.reset()
-}
+//   closePopup(popupAddCard)
+//   popupAddCardForm.reset()
+// }
 
 // --------------- element-template end (functions) --------------------
 
@@ -135,7 +139,7 @@ popupAddCardOpenButton.addEventListener('click', function () {
 })
 
 // обработчик на добавление новой карточки
-popupAddCardForm.addEventListener('submit', addNewCard)
+//popupAddCardForm.addEventListener('submit', addNewCard)
 
 // --------------------------------------------------------------------
 
@@ -149,4 +153,4 @@ formNewCardValidation.enableValidation(formConfig)
 // ---------------------------------------------------------------------
 
 // запускаем отрисовку карточек их массива
-renderElement(initialCards)
+//renderElement(initialCards)
