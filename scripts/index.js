@@ -85,6 +85,7 @@ function instanceClassCard(name, link, elementTemplate) {
 
 // --------------- element-template (functions) --------------------
 
+// Экземпляр отрисовывает каждую карточку из массива
 const renderCardsFromArr = new Section({
   data: initialCards,
   renderer: (item) => {
@@ -96,32 +97,32 @@ const renderCardsFromArr = new Section({
   }
 },
   '.elements')
+
 renderCardsFromArr.renderItems()
 
-// // Функция отрисовывает каждую карточку из массива
-// function renderElement(arr) { 
-//   arr.forEach((item) => {
-//     // Создадим экземпляр карточки
-//     const cardElement = instanceClassCard(item.name, item.link, '#element-template').createCard()
+// Функция на создание и добавление новой карточки
+function addNewCard(event) {
+  event.preventDefault()
 
-//     // Добавляем в DOM
-//     elementsContainer.prepend(cardElement)
-//   })
-// }
+  const link = popupAddCardInputLink.value
+  const name = popupAddCardInputTitle.value
 
-// // Функция на добавление новой карточки
-// function addNewCard(event) {
-//   event.preventDefault()
+  const renderNewCard = new Section({
+    data: [{ name, link }],
+    renderer: (item) => {
+      const card = instanceClassCard(item.name, item.link, '#element-template')
 
-//   const link = popupAddCardInputLink.value
-//   const title = popupAddCardInputTitle.value
+      const cardElement = card.createCard();
 
-//   const cardElement = instanceClassCard(title, link, '#element-template').createCard()
-//   elementsContainer.prepend(cardElement)
+      renderNewCard.addItem(cardElement)
+    }
+  },
+    '.elements')
 
-//   closePopup(popupAddCard)
-//   popupAddCardForm.reset()
-// }
+  renderNewCard.renderItems()
+  closePopup(popupAddCard)
+  popupAddCardForm.reset()
+}
 
 // --------------- element-template end (functions) --------------------
 
@@ -149,7 +150,7 @@ popupAddCardOpenButton.addEventListener('click', function () {
 })
 
 // обработчик на добавление новой карточки
-//popupAddCardForm.addEventListener('submit', addNewCard)
+popupAddCardForm.addEventListener('submit', addNewCard)
 
 // --------------------------------------------------------------------
 
