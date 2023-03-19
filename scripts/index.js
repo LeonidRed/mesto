@@ -78,18 +78,28 @@ function savePopupProfileInput(event) {
   closePopup(popupProfile)
 }
 
+// Функция возвращает экземпляр класса Card
+function instanceClassCard(name, link, elementTemplate) {
+  return new Card(name, link, elementTemplate)
+}
+
 // --------------- element-template (functions) --------------------
-console.log(initialCards);
-const renderCardsFromArr = new Section({ data: initialCards }, '.elements')
+
+const renderCardsFromArr = new Section({
+  data: initialCards,
+  renderer: (item) => {
+    const card = instanceClassCard(item.name, item.link, '#element-template')
+
+    const cardElement = card.createCard();
+
+    renderCardsFromArr.addItem(cardElement)
+  }
+},
+  '.elements')
 renderCardsFromArr.renderItems()
 
-// // Функция возвращает экземпляр класса Card
-// function instanceClassCard(name, link, elementTemplate) {
-//   return new Card(name, link, elementTemplate)
-// }
-
 // // Функция отрисовывает каждую карточку из массива
-// function renderElement(arr) {
+// function renderElement(arr) { 
 //   arr.forEach((item) => {
 //     // Создадим экземпляр карточки
 //     const cardElement = instanceClassCard(item.name, item.link, '#element-template').createCard()
