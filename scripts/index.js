@@ -2,6 +2,7 @@ import { initialCards, formConfig } from '../utils/constants.js'
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
+import Popup from '../components/Popup.js'
 
 // Выбираем все попапы
 const popups = document.querySelectorAll('.popup')
@@ -30,43 +31,12 @@ export const popupFigureCaption = document.querySelector('.popup__figure-caption
 const profileInfoName = document.querySelector('.profile__info-name')
 const profileInfoProf = document.querySelector('.profile__info-profession')
 
-// Выбираем шаблон и контейнер для вставки шаблона element-template
-const elementsContainer = document.querySelector('.elements')
-
-// для проверки нажатой клавиши Escape
-const escape = 'Escape'
-
-// Для открытия попапа
 export function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  window.addEventListener('keydown', closePopupOnEsc)  // слушатель на Escape
+  return new Popup(popup).open()
 }
 
-// Для закрытия попапа
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  window.removeEventListener('keydown', closePopupOnEsc)  // убираем слушатель на Escape
-}
-
-// Функция закрывает попап по клику на кнопку-крестик или overlay
-function closePopupOnButtonOrOverlay(event) {
-  const popupButtonExit = 'popup__button-exit'
-  if (event.target === event.currentTarget || event.target.className === popupButtonExit) {
-    closePopup(event.currentTarget)
-  }
-}
-
-// Функция закрывает попап по нажатию на Escape
-function closePopupOnEsc(event) {
-  if (event.key === escape) {
-    checkActivePopup()
-  }
-}
-
-// Функция находит попап, который сейчас открыт
-function checkActivePopup() {
-  const activePopup = document.querySelector('.popup_opened')
-  closePopup(activePopup)
+  return new Popup(popup).close()
 }
 
 
@@ -98,8 +68,6 @@ const renderCardsFromArr = new Section({
 },
   '.elements')
 
-renderCardsFromArr.renderItems()
-
 // Функция на создание и добавление новой карточки
 function addNewCard(event) {
   event.preventDefault()
@@ -120,24 +88,21 @@ function addNewCard(event) {
     '.elements')
 
   renderNewCard.renderItems()
-  closePopup(popupAddCard)
   popupAddCardForm.reset()
+  closePopup(popupAddCard)
 }
 
 // --------------- element-template end (functions) --------------------
 
 
-// Обработчик на все попапы
-popups.forEach(popup => popup.addEventListener('click', closePopupOnButtonOrOverlay))
-
 // Обработчик на кнопку открытия редактирования профиля
 popupProfileOpenButton.addEventListener('click', function () {
-  openPopup(popupProfile)
   popupProfileInputName.value = profileInfoName.textContent
   popupProfileInputProf.value = profileInfoProf.textContent
   formProfileValidation.hideInputError(popupProfile, popupProfileInputName, formConfig)
   formProfileValidation.hideInputError(popupProfile, popupProfileInputProf, formConfig)
   formProfileValidation.enableValidation(formConfig) // проверяем input на заполненность
+  openPopup(popupProfile)
 })
 
 // Обработчик на кнопку сохранения профиля
@@ -145,8 +110,9 @@ popupProfileForm.addEventListener('submit', savePopupProfileInput)
 
 // Обработчик на кнопку добавления новой карточки
 popupAddCardOpenButton.addEventListener('click', function () {
-  openPopup(popupAddCard)
+  //openPopup(popupAddCard)
   formNewCardValidation.enableValidation(formConfig) // проверяем input на заполненность
+  openPopup(popupAddCard)
 })
 
 // обработчик на добавление новой карточки
@@ -164,4 +130,4 @@ formNewCardValidation.enableValidation(formConfig)
 // ---------------------------------------------------------------------
 
 // запускаем отрисовку карточек их массива
-//renderElement(initialCards)
+renderCardsFromArr.renderItems()

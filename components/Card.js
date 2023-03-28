@@ -1,4 +1,4 @@
-import { openPopup, popupImg, popupFigureCaption, popupFigureImage } from "../scripts/index.js"
+import { popupImg, popupFigureCaption, popupFigureImage, openPopup } from "../scripts/index.js"
 
 export default class Card {
   constructor(name, link, templateSelector) {
@@ -39,10 +39,10 @@ export default class Card {
 
   // обработчик на попап с увеличенной картинкой
   _handleOnCardClick() {
-    openPopup(popupImg)
     popupFigureImage.src = this._link
     popupFigureImage.alt = this._name
     popupFigureCaption.textContent = this._name
+    openPopup(popupImg)
   }
 
 
