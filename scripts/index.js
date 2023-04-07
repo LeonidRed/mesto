@@ -3,26 +3,21 @@ import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
 import Popup from '../components/Popup.js'
+import PopupWithForm from '../components/PopupWithForm.js'
 
-// Выбираем все попапы
-const popups = document.querySelectorAll('.popup')
+
 // Выбираем кнопки
 const popupProfileOpenButton = document.querySelector('.profile__button-edit')
 const popupAddCardOpenButton = document.querySelector('.profile__button-add')
-const popupAddCardSaveButton = document.querySelector('.popup__button-create')
 
 // Выбираем модальные окна и input в них
 const popupProfile = document.querySelector('.popup-profile')
-const popupProfileForm = document.querySelector('.popup__form-profile')
 const popupAddCard = document.querySelector('.popup-add')
-const popupAddCardForm = document.querySelector('.popup__form_add')
 export const popupImg = document.querySelector('.popup-image')
 //popup-edit
 const popupProfileInputName = document.querySelector('#input-name')
 const popupProfileInputProf = document.querySelector('#input-prof')
-//popup-add
-const popupAddCardInputTitle = document.querySelector('#input-title')
-const popupAddCardInputLink = document.querySelector('#input-link')
+
 //popup-image
 export const popupFigureImage = document.querySelector('.popup__figure-image')
 export const popupFigureCaption = document.querySelector('.popup__figure-caption')
@@ -35,18 +30,45 @@ export function openPopup(popup) {
   return new Popup(popup).open()
 }
 
-function closePopup(popup) {
-  return new Popup(popup).close()
-}
+// function closePopup(popup) {
+//   return new Popup(popup).close()
+// }
 
+//Экземпляр класса PopupWithForm для Profile
+const popupWithProfileForm = new PopupWithForm(savePopupProfileInput, popupProfile)
+popupWithProfileForm.setEventListeners()
+
+//Экземпляр класса PopupWithForm для AddNewCard
+const popupWithAddCardForm = new PopupWithForm(addNewCard, popupAddCard)
+popupWithAddCardForm.setEventListeners()
 
 //Функция на кнопку сохранение профиля
-function savePopupProfileInput(event) {
-  event.preventDefault()
-  profileInfoName.textContent = popupProfileInputName.value
-  profileInfoProf.textContent = popupProfileInputProf.value
-  closePopup(popupProfile)
+function savePopupProfileInput(values) {
+  profileInfoName.textContent = values.name
+  profileInfoProf.textContent = values.prof
 }
+
+// Функция на создание и добавление новой карточки
+function addNewCard(values) {
+
+  const link = values.link
+  const name = values.title
+
+  const renderNewCard = new Section({
+    data: [{ name, link }],
+    renderer: (item) => {
+      const card = instanceClassCard(item.name, item.link, '#element-template')
+
+      const cardElement = card.createCard();
+
+      renderNewCard.addItem(cardElement)
+    }
+  },
+    '.elements')
+
+  renderNewCard.renderItems()
+}
+
 
 // Функция возвращает экземпляр класса Card
 function instanceClassCard(name, link, elementTemplate) {
@@ -68,29 +90,6 @@ const renderCardsFromArr = new Section({
 },
   '.elements')
 
-// Функция на создание и добавление новой карточки
-function addNewCard(event) {
-  event.preventDefault()
-
-  const link = popupAddCardInputLink.value
-  const name = popupAddCardInputTitle.value
-
-  const renderNewCard = new Section({
-    data: [{ name, link }],
-    renderer: (item) => {
-      const card = instanceClassCard(item.name, item.link, '#element-template')
-
-      const cardElement = card.createCard();
-
-      renderNewCard.addItem(cardElement)
-    }
-  },
-    '.elements')
-
-  renderNewCard.renderItems()
-  popupAddCardForm.reset()
-  closePopup(popupAddCard)
-}
 
 // --------------- element-template end (functions) --------------------
 
@@ -105,22 +104,16 @@ popupProfileOpenButton.addEventListener('click', function () {
   openPopup(popupProfile)
 })
 
-// Обработчик на кнопку сохранения профиля
-popupProfileForm.addEventListener('submit', savePopupProfileInput)
-
 // Обработчик на кнопку добавления новой карточки
 popupAddCardOpenButton.addEventListener('click', function () {
-  //openPopup(popupAddCard)
   formNewCardValidation.enableValidation(formConfig) // проверяем input на заполненность
   openPopup(popupAddCard)
 })
 
-// обработчик на добавление новой карточки
-popupAddCardForm.addEventListener('submit', addNewCard)
 
 // --------------------------------------------------------------------
 
-// создаем экземпляр класса 
+// создаем экземпляр класса FormValidator
 const formProfileValidation = new FormValidator(formConfig, '.popup__form-profile')
 formProfileValidation.enableValidation(formConfig)
 
