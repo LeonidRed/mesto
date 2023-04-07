@@ -17,12 +17,6 @@ export default class PopupWithForm extends Popup {
     return this._values
   }
 
-  // getInfo() {
-  //   console.log(this)
-  //   console.log(this._popupForm)
-  //   console.log(this._popupFormInputs)
-  // }
-
   //добавляет обработчик клика иконке закрытия и обработчик сабмита формы.
   setEventListeners() {
     super._setEventListeners()

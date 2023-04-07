@@ -4,6 +4,7 @@ import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
 import Popup from '../components/Popup.js'
 import PopupWithForm from '../components/PopupWithForm.js'
+import UserInfo from '../components/UserInfo.js'
 
 
 // Выбираем кнопки
@@ -30,9 +31,8 @@ export function openPopup(popup) {
   return new Popup(popup).open()
 }
 
-// function closePopup(popup) {
-//   return new Popup(popup).close()
-// }
+//Экземляр класса UserInfo
+const userInfo = new UserInfo(profileInfoName, profileInfoProf)
 
 //Экземпляр класса PopupWithForm для Profile
 const popupWithProfileForm = new PopupWithForm(savePopupProfileInput, popupProfile)
@@ -44,8 +44,7 @@ popupWithAddCardForm.setEventListeners()
 
 //Функция на кнопку сохранение профиля
 function savePopupProfileInput(values) {
-  profileInfoName.textContent = values.name
-  profileInfoProf.textContent = values.prof
+  userInfo.setUserInfo(values.name, values.prof)
 }
 
 // Функция на создание и добавление новой карточки
@@ -96,8 +95,9 @@ const renderCardsFromArr = new Section({
 
 // Обработчик на кнопку открытия редактирования профиля
 popupProfileOpenButton.addEventListener('click', function () {
-  popupProfileInputName.value = profileInfoName.textContent
-  popupProfileInputProf.value = profileInfoProf.textContent
+  const { name, prof } = userInfo.getUserInfo()
+  popupProfileInputName.value = name
+  popupProfileInputProf.value = prof
   formProfileValidation.hideInputError(popupProfile, popupProfileInputName, formConfig)
   formProfileValidation.hideInputError(popupProfile, popupProfileInputProf, formConfig)
   formProfileValidation.enableValidation(formConfig) // проверяем input на заполненность
