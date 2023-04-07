@@ -1,4 +1,5 @@
 import { popupImg, popupFigureCaption, popupFigureImage, openPopup } from "../scripts/index.js"
+import PopupWithImage from "./PopupWithImage.js"
 
 export default class Card {
   constructor(name, link, templateSelector) {
@@ -39,10 +40,10 @@ export default class Card {
 
   // обработчик на попап с увеличенной картинкой
   _handleOnCardClick() {
-    popupFigureImage.src = this._link
-    popupFigureImage.alt = this._name
-    popupFigureCaption.textContent = this._name
-    openPopup(popupImg)
+    const img = new PopupWithImage(popupImg)
+    const name = this._name
+    const link = this._link
+    img.open(name, link)
   }
 
 
