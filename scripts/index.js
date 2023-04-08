@@ -5,7 +5,7 @@ import Section from '../components/Section.js'
 import Popup from '../components/Popup.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
-
+import PopupWithImage from '../components/PopupWithImage.js'
 
 // Выбираем кнопки
 const popupProfileOpenButton = document.querySelector('.profile__button-edit')
@@ -68,10 +68,18 @@ function addNewCard(values) {
   renderNewCard.renderItems()
 }
 
+// Функция на попап с увеличенной картинкой
+function handleOnCardClick() {
+  const img = new PopupWithImage(popupImg)
+  const name = this._name
+  const link = this._link
+  img.open(name, link)
+}
+
 
 // Функция возвращает экземпляр класса Card
 function instanceClassCard(name, link, elementTemplate) {
-  return new Card(name, link, elementTemplate)
+  return new Card(name, link, elementTemplate, handleOnCardClick)
 }
 
 // --------------- element-template (functions) --------------------
@@ -80,7 +88,7 @@ function instanceClassCard(name, link, elementTemplate) {
 const renderCardsFromArr = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = instanceClassCard(item.name, item.link, '#element-template')
+    const card = instanceClassCard(item.name, item.link, '#element-template', handleOnCardClick)
 
     const cardElement = card.createCard();
 

@@ -15,7 +15,6 @@ export default class UserInfo {
 
   // метод принимает новые данные пользователя и добавляет их на страницу
   setUserInfo(name, prof) {
-    console.log(name, prof);
     this._userName.textContent = name
     this._userProf.textContent = prof
   }

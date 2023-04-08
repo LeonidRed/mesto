@@ -1,11 +1,9 @@
-import { popupImg, popupFigureCaption, popupFigureImage, openPopup } from "../scripts/index.js"
-import PopupWithImage from "./PopupWithImage.js"
-
 export default class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, handleOnCardClick) {
     this._name = name
     this._link = link
     this._templateSelector = templateSelector
+    this._handleOnCardClick = handleOnCardClick
   }
 
   _getTemplate() {
@@ -23,6 +21,9 @@ export default class Card {
     this._element.querySelector('.element__button-del').addEventListener('click', () => {
       this._handleDeleteBtnClick() // слушатель на корзину-кнопку
     })
+    // this._element.querySelector('.element__picture').addEventListener('click', () => {
+    //   this._handleOnCardClick() // слушатель на клик по картинке карточки
+    // })
     this._element.querySelector('.element__picture').addEventListener('click', () => {
       this._handleOnCardClick() // слушатель на клик по картинке карточки
     })
@@ -36,14 +37,6 @@ export default class Card {
   // обработчик на корзину-кнопку
   _handleDeleteBtnClick() {
     this._element.remove()
-  }
-
-  // обработчик на попап с увеличенной картинкой
-  _handleOnCardClick() {
-    const img = new PopupWithImage(popupImg)
-    const name = this._name
-    const link = this._link
-    img.open(name, link)
   }
 
 
