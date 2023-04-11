@@ -21,10 +21,6 @@ export const popupImg = document.querySelector('.popup-image')
 const popupProfileInputName = document.querySelector('#input-name')
 const popupProfileInputProf = document.querySelector('#input-prof')
 
-//popup add-card
-const popupAddCardInputTitle = document.querySelector('#input-title')
-const popupAddCardInputLink = document.querySelector('#input-link')
-
 //popup with image
 export const popupFigureImage = document.querySelector('.popup__figure-image')
 export const popupFigureCaption = document.querySelector('.popup__figure-caption')
@@ -47,25 +43,20 @@ popupWithAddCardForm.setEventListeners()
 
 // Экземпляр класса PopupWithImage
 const popupWithImage = new PopupWithImage(popupImg)
-popupWithImage._setEventListeners()
-
-// Функция возвращает экземпляр класса Section
-function renderCard({data, renderer}, containerSelector) {
-  return new Section({data, renderer}, containerSelector)
-}
+popupWithImage.setEventListeners()
 
 // Функция возвращает экземпляр класса Card
 function instanceClassCard(name, link, elementTemplate) {
   return new Card(name, link, elementTemplate, handleOnCardClick)
 }
 
-// Отрисовка каждой карточки из массива
-const renderCardsFromArr = renderCard({
+// Отрисовка каждой карточки
+const renderCard = new Section({
   data: initialCards,
   renderer: (item) => {
     const card = instanceClassCard(item.name, item.link, '#element-template')
-    const cardElement = card.createCard();
-    renderCardsFromArr.addItem(cardElement)
+    const cardElement = card.createCard() // возвращает элемент (карточку)
+    renderCard.addItem(cardElement)
     }
   },
   '.elements'
@@ -73,21 +64,9 @@ const renderCardsFromArr = renderCard({
 
 // Функция на создание и добавление новой карточки
 function addNewCard(values) {
-
-  const link = values.link
-  const name = values.title
-
-  const renderNewCard = renderCard({
-    data: [{ name, link }],
-    renderer: (item) => {
-      const card = instanceClassCard(item.name, item.link, '#element-template')
-      const cardElement = card.createCard();
-      renderNewCard.addItem(cardElement)
-    }
-  },
-    '.elements')
-
-  renderNewCard.renderItems()
+  const card = instanceClassCard(values.title, values.link, '#element-template')
+  const cardElement = card.createCard()
+  renderCard.addItem(cardElement)
 }
 
 // Функция на попап с увеличенной картинкой
@@ -127,4 +106,4 @@ const formNewCardValidation = new FormValidator(formConfig, '.popup__form_add')
 formNewCardValidation.enableValidation()
 
 // запускаем отрисовку карточек их массива
-renderCardsFromArr.renderItems()
+renderCard.renderItems()

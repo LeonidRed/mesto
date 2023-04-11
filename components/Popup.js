@@ -21,14 +21,13 @@ export default class Popup {
     }
   }
 
-  _setEventListeners() {
+  setEventListeners() {
     this._popup.addEventListener('click', this._hadleButtonOrOverlayClose.bind(this))
-    //window.addEventListener('keydown', this._handleEscClose)
   }
 
   open() {
     this._popup.classList.add('popup_opened');
-    // this._setEventListeners()
+  
     window.addEventListener('keydown', this._handleEscClose)
   }
 
