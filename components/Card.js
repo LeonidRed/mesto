@@ -21,10 +21,7 @@ export default class Card {
     this._element.querySelector('.element__button-del').addEventListener('click', () => {
       this._handleDeleteBtnClick() // слушатель на корзину-кнопку
     })
-    // this._element.querySelector('.element__picture').addEventListener('click', () => {
-    //   this._handleOnCardClick() // слушатель на клик по картинке карточки
-    // })
-    this._element.querySelector('.element__picture').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._handleOnCardClick() // слушатель на клик по картинке карточки
     })
   }
@@ -44,13 +41,14 @@ export default class Card {
   createCard() {
     // Запишем разметку в приватное поле _element, для доступа к ней других элементов
     this._element = this._getTemplate()
+    this._cardImage = this._element.querySelector('.element__picture')
 
-    this._setEventListeners(); // добавим обработчики
+    this._setEventListeners() // добавим обработчики
 
     // Добавим данные
     this._element.querySelector('.element__area-title').textContent = this._name
-    this._element.querySelector('.element__picture').src = this._link
-    this._element.querySelector('.element__picture').alt = this._name
+    this._cardImage.src = this._link
+    this._cardImage.alt = this._name
 
     return this._element
   }

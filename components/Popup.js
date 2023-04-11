@@ -4,6 +4,7 @@ const popupButtonExit = 'popup__button-exit'
 export default class Popup {
   constructor(popup) {
     this._popup = popup
+    this._handleEscClose = this._handleEscClose.bind(this)
   }
 
   // закрывает попап по клавише Escape
@@ -22,17 +23,18 @@ export default class Popup {
 
   _setEventListeners() {
     this._popup.addEventListener('click', this._hadleButtonOrOverlayClose.bind(this))
-    window.addEventListener('keydown', this._handleEscClose.bind(this))
+    //window.addEventListener('keydown', this._handleEscClose)
   }
 
   open() {
     this._popup.classList.add('popup_opened');
-    this._setEventListeners()
+    // this._setEventListeners()
+    window.addEventListener('keydown', this._handleEscClose)
   }
 
   close() {
     this._popup.classList.remove('popup_opened');
-    window.removeEventListener('keydown', this._handleEscClose.bind(this))
+    window.removeEventListener('keydown', this._handleEscClose)
   }
 
 }

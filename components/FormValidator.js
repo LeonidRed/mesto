@@ -7,78 +7,85 @@ export default class FormValidator {
         this._inputErrorClass = formConfig.inputErrorClass
         this._errorClass = formConfig.errorClass
         this._elementForm = elementForm
+        this._form = document.querySelector(this._elementForm)
+        this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector)); //находим все поля внутри формы
+        this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     }
 
-    // Функция добавляет обработчики всем input формы
-    _setEventListeners(form, { inputSelector, submitButtonSelector }) {
-        const inputList = Array.from(form.querySelectorAll(inputSelector)); //находим все поля внутри формы
-        const buttonElement = form.querySelector(submitButtonSelector);
+    // Метод добавляет обработчики всем input формы
+    _setEventListeners() {
 
-        this._toggleButtonState(inputList, buttonElement, this._formConfig);  // для сброса состояния кнопки, если input заполнены
+        this._toggleButtonState();  // для сброса состояния кнопки, если input заполнены
 
-        inputList.forEach((formInput) => {
+        this._inputList.forEach((formInput) => {
             formInput.addEventListener('input', () => {
-                this._isValid(form, formInput)
-                this._toggleButtonState(inputList, buttonElement, this._formConfig);  //
+                this._isValid(formInput)
+                this._toggleButtonState()
             });
         });
     };
 
-    // Функция проверяет валидность поля
-    _isValid(form, formInput) {
+    // Метод проверяет валидность поля
+    _isValid(formInput) {
         if (!formInput.validity.valid) {
             // Если поле не проходит валидацию, покажем ошибку
-            this._showInputError(form, formInput, formInput.validationMessage, this._formConfig);
+            this._showInputError(formInput)
         } else {
             // Если проходит, скроем
-            this.hideInputError(form, formInput, this._formConfig);
+            this._hideInputError(formInput)
         }
     };
 
-    // Функция управляет состоянием кнопки
-    _toggleButtonState(inputList, buttonElement, { inactiveButtonClass }) {
-        if (this._hasInvalidInput(inputList)) { // Если есть хотя бы один невалидный инпут
+    // Метод управляет состоянием кнопки
+    _toggleButtonState() {
+        if (this._hasInvalidInput()) { // Если есть хотя бы один невалидный инпут
             // сделай кнопку неактивной
-            buttonElement.setAttribute('disabled', 'disabled')
-            buttonElement.classList.add(inactiveButtonClass);
+            this._buttonElement.setAttribute('disabled', 'disabled')
+            this._buttonElement.classList.add(this._inactiveButtonClass)
         } else {
             // иначе сделай кнопку активной
-            buttonElement.removeAttribute('disabled')
-            buttonElement.classList.remove(inactiveButtonClass);
+            this._buttonElement.removeAttribute('disabled')
+            this._buttonElement.classList.remove(this._inactiveButtonClass)
         }
     };
 
-    // Функция проверяет наличие невалидного input
-    _hasInvalidInput(inputList) {
-        return inputList.some((inputElement) => {
+    // Метод проверяет наличие невалидного input
+    _hasInvalidInput() {
+        return this._inputList.some((inputElement) => {
             // Если поле не валидно, колбэк вернёт true
             // Обход массива прекратится и вся функция
             // hasInvalidInput вернёт true
-            return !inputElement.validity.valid;
+            return !inputElement.validity.valid
         })
     };
 
-    // Функция добавляет класс с ошибкой
-    _showInputError(form, formInput, errorMessage, { inputErrorClass, errorClass }) {
-        const errorElement = form.querySelector(`.${formInput.id}-error`);
-        formInput.classList.add(inputErrorClass);
-        errorElement.classList.add(errorClass); // Показываем span-сообщение об ошибке
-        errorElement.textContent = errorMessage; // Заменим содержимое span с ошибкой на переданный параметр
+    // Метод добавляет класс с ошибкой
+    _showInputError(formInput) {
+        const errorElement = this._form.querySelector(`.${formInput.id}-error`)
+        formInput.classList.add(this._inputErrorClass)
+        errorElement.classList.add(this._errorClass) // Показываем span-сообщение об ошибке
+        errorElement.textContent = formInput.validationMessage // Заменим содержимое span с ошибкой на текст ошибки по умолчанию
     };
 
-    // Функция удаляет класс с ошибкой, метод не приватный для сброса ошибок при повторном открытии окна
-    hideInputError(form, formInput, { inputErrorClass, errorClass }) {
-        const errorElement = form.querySelector(`.${formInput.id}-error`);
-        formInput.classList.remove(inputErrorClass);
-        errorElement.classList.remove(errorClass);
-        errorElement.textContent = '';
-    };
+    // Метод удаляет класс с ошибкой, метод не приватный для сброса ошибок при повторном открытии окна
+    _hideInputError(formInput) {
+        const errorElement = this._form.querySelector(`.${formInput.id}-error`)
+        formInput.classList.remove(this._inputErrorClass)
+        errorElement.classList.remove(this._errorClass)
+        errorElement.textContent = ''
+    }
 
+      // Метод для очистки ошибок и управления кнопкой
+      resetValidation() {
+        this._toggleButtonState()
+  
+        this._inputList.forEach((inputElement) => {
+          this._hideInputError(inputElement)
+        })
+      }
 
     // Метод добавляет слушатель всем формам
-    enableValidation(formConfig) {
-        const form = document.querySelector(this._elementForm)
-
-        this._setEventListeners(form, formConfig)
+    enableValidation() {
+        this._setEventListeners()
     }
 }
