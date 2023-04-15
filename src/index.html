@@ -23,10 +23,12 @@
 
       <!-- ------------- profile start ------------ -->
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('../images/Avatar.png')%>" alt="Аватар автора">
+        <div class="profile__avatar">
+          <img class="profile__avatar-image" src="" alt="Аватар автора">
+        </div>
         <div class="profile__info">
-          <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-          <p class="profile__info-profession">Исследователь океана</p>
+          <h1 class="profile__info-name"></h1>
+          <p class="profile__info-profession"></p>
         </div>
         <button class="profile__button-edit" type="button" aria-label="Кнопка
             редактирования профиля">
@@ -48,7 +50,10 @@
             <img class="element__picture">
             <div class="element__area">
               <h2 class="element__area-title"></h2>
-              <button class="element__area-like" type="button" aria-label="Кнопка нравится"></button>
+              <div class="element__area-like-section">
+                <button class="element__area-like" type="button" aria-label="Кнопка нравится"></button>
+                <p class="element__area-like-counter"></p>
+              </div>
             </div>
           </article>
         </template>
@@ -67,7 +72,7 @@
     <!-- ------------- popup-profile start ------------ -->
     <div class="popup popup-profile">
       <div class="popup__container">
-        <form class="popup__form popup__form-profile" action="#" method="get" name="popup-edit-form" novalidate>
+        <form class="popup__form popup__form-profile" action="#" name="popup-edit-form" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
           <input class="popup__input" id="input-name" name="name" type="text" placeholder="Введите имя" minlength="2"
             maxlength="40" required>
@@ -88,7 +93,7 @@
     <!-- ------------- popup-add start ------------ -->
     <div class="popup popup-add">
       <div class="popup__container">
-        <form class="popup__form popup__form_add" action="#" method="get" name="popup-add-form" novalidate>
+        <form class="popup__form popup__form_add" action="#" name="popup-add-form" novalidate>
           <h2 class="popup__title">Новое место</h2>
           <input class="popup__input" id="input-title" name="title" type="text" placeholder="Название" minlength="2"
             maxlength="30" required>
@@ -117,6 +122,35 @@
           закрыть окно редактирования"></button>
     </div>
     <!-- ------------- popup-image end ------------ -->
+
+    <!-- ------------- popup-delete start ------------ -->
+    <div class="popup popup-delete">
+      <div class="popup__container popup__container_delete">
+        <form class="popup__form popup__form-delete" name="popup-delete-form" novalidate>
+          <h2 class="popup__title popup__title-delete">Вы уверены?</h2>
+          <button class="popup__button-save popup__button-delete-submit" type="submit">Да</button>
+        </form>
+      </div>
+      <button class="popup__button-exit" type="button" aria-label="Кнопка
+          закрыть окно редактирования"></button>
+    </div>
+    <!-- ------------- popup-delete end ------------ -->
+
+    <!-- ------------- popup-avatar start ------------ -->
+    <div class="popup popup-avatar">
+      <div class="popup__container popup__container_avatar">
+        <form class="popup__form popup__form_avatar" action="#" name="popup-add-form" novalidate>
+          <h2 class="popup__title popup__title-avatar">Обновить аватар</h2>
+          <input class="popup__input" id="input-link" name="link" type="url" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error input-link-error">Вы пропустили это
+            поле</span>
+          <button class="popup__button-save popup__button-create" type="submit" disabled>Сохранить</button>
+        </form>
+      </div>
+      <button class="popup__button-exit" type="button" aria-label="Кнопка
+          закрыть окно редактирования"></button>
+    </div>
+    <!-- ------------- popup-avatar end ------------ -->
 
   </div>
   <!-- ------------- page end ------------ -->

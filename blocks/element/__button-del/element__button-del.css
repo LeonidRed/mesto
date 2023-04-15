@@ -12,6 +12,7 @@
   position: absolute;
   right: 20px;
   top: 20px;
+  display: none;
 }
 
 .element__button-del:hover {

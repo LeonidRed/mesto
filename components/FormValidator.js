@@ -8,8 +8,8 @@ export default class FormValidator {
         this._errorClass = formConfig.errorClass
         this._elementForm = elementForm
         this._form = document.querySelector(this._elementForm)
-        this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector)); //находим все поля внутри формы
-        this._buttonElement = this._form.querySelector(this._submitButtonSelector);
+        this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector)) //находим все поля внутри формы
+        this._buttonElement = this._form.querySelector(this._submitButtonSelector)
     }
 
     // Метод добавляет обработчики всем input формы
@@ -75,14 +75,14 @@ export default class FormValidator {
         errorElement.textContent = ''
     }
 
-      // Метод для очистки ошибок и управления кнопкой
-      resetValidation() {
+    // Метод для очистки ошибок и управления кнопкой
+    resetValidation() {
         this._toggleButtonState()
-  
+
         this._inputList.forEach((inputElement) => {
-          this._hideInputError(inputElement)
+            this._hideInputError(inputElement)
         })
-      }
+    }
 
     // Метод добавляет слушатель всем формам
     enableValidation() {
