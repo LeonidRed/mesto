@@ -4,17 +4,19 @@ export default class Api {
       this._headers = options.headers
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json()
+    }
+    return Promise.reject(`Ошибка: ${res.status}`)
+  }
+
   getUserInfo() {
     return fetch(`${this._url}users/me`, {
       method: "GET",
       headers: this._headers
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   getInitialCards() {
@@ -22,12 +24,7 @@ export default class Api {
       method: "GET",
       headers: this._headers
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   editProfile(values) {
@@ -36,12 +33,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ name: values.name, about: values.prof })
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   addCard(values) {
@@ -50,12 +42,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ name: values.title, link: values.link })
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   deleteCard(id) {
@@ -63,12 +50,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   addLike(id) {
@@ -76,12 +58,7 @@ export default class Api {
       method: "PUT",
       headers: this._headers
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   removeLike(id) {
@@ -89,12 +66,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   changeAvatar(value) {
@@ -103,12 +75,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ avatar: value.link })
     })
-      .then(res => {
-        if (res.status === 200) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 }
 

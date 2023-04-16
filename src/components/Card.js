@@ -33,7 +33,7 @@ export default class Card {
       this._handleDeleteBtnClick(this._cardId) // слушатель на корзину-кнопку
     })
     this._cardImage.addEventListener('click', () => {
-      this._handleOnCardClick() // слушатель на клик по картинке карточки
+      this._handleOnCardClick(this._name, this._link) // слушатель на клик по картинке карточки
     })
   }
 

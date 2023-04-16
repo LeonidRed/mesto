@@ -55,9 +55,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userId = user._id
     renderCard.renderItems(cards)
   })
-  .catch((err) => {
-    console.log(err)
-  })
+  .catch(err => console.log(err))
 
 // Экземляр класса UserInfo
 const userInfo = new UserInfo(profileInfoName, profileInfoProf, profileAvatar)
@@ -110,20 +108,28 @@ function createCard(data) {
     userId: userId
   },
     '#element-template',
+
     handleOnCardClick,
+
     {
       handleDeleteBtnClick: () => {
         popupWithDeleteBtn.open(card)
       },
       handleLike: () => {
         api.addLike(data._id)
-          .then(value => card.setLikesCount(value))
-        card.like()
+          .then(value => {
+            card.setLikesCount(value)
+            card.like()
+          })
+          .catch(err => console.log(err))
       },
       handleDislike: () => {
         api.removeLike(data._id)
-          .then(value => card.setLikesCount(value))
-        card.dislike()
+          .then(value => {
+            card.setLikesCount(value)
+            card.dislike()
+          })
+          .catch(err => console.log(err))
       }
     }
   )
@@ -132,54 +138,56 @@ function createCard(data) {
 
 // Функция на создание и добавление новой карточки
 function addNewCard(values) {
-  popupWithAddCardForm.setButtonState(true, 'Создание...')
+  popupWithAddCardForm.setButtonText(true, 'Создание...')
   api.addCard(values)
     .then((result) => {
       renderCard.addItemPrepend(createCard(result))
+      popupWithAddCardForm.close()
     })
     .catch((err) => console.log(err))
     .finally(() => {
-      popupWithAddCardForm.setButtonState(false)
+      popupWithAddCardForm.setButtonText(false)
     })
 }
 
 // Функция на кнопку сохранение профиля
 function savePopupProfileInput(values) {
-  popupWithProfileForm.setButtonState(true, 'Сохранение...')
+  popupWithProfileForm.setButtonText(true, 'Сохранение...')
   api.editProfile(values)
     .then(data => {
       userInfo.setUserInfo(data.name, data.about)
+      popupWithProfileForm.close()
     })
     .catch(err => console.log(err))
     .finally(() => {
-      popupWithProfileForm.setButtonState(false)
+      popupWithProfileForm.setButtonText(false)
     })
 }
 
 // Функция на изменение аватара
-function changeAvatar() {
-  popupWithChangeAvatarForm.setButtonState(true, 'Сохранение...')
-  api.changeAvatar(this._values)
+function changeAvatar(value) {
+  popupWithChangeAvatarForm.setButtonText(true, 'Сохранение...')
+  api.changeAvatar(value)
     .then((data) => {
       userInfo.setUserAvatar(data.avatar)
+      popupWithChangeAvatarForm.close()
     })
-    .catch((err) => console.log(err))
+    .catch(err => console.log(err))
     .finally(() => {
-      popupWithChangeAvatarForm.setButtonState(false)
+      popupWithChangeAvatarForm.setButtonText(false)
     })
 }
 
 // Функция на попап с увеличенной картинкой
-function handleOnCardClick() {
-  const name = this._name
-  const link = this._link
+function handleOnCardClick(name, link) {
   popupWithImage.open(name, link)
 }
 
 // Функция на удаление карточки
 function handleSubmit(card) {
   api.deleteCard(card._cardId)
-  card.deleteCard()
+    .then(res => card.deleteCard())
+    .catch(err => console.log(err))
   popupWithDeleteBtn.close()
 }
 
